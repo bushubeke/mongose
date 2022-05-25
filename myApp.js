@@ -1,5 +1,6 @@
 require('dotenv').config();
-
+const mySecret = process.env['MONGO_URI']
+console.log(mySecret)
 
 let Person;
 
@@ -50,6 +51,7 @@ const queryChain = (done) => {
 
   done(null /*, data*/);
 };
+
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
