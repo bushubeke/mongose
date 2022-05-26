@@ -2,12 +2,13 @@
   "name": "mongomongose",
   "version": "0.0.1",
   "description": "A boilerplate project",
-  "main": "server.js",
+  "main": "addisserv.js",
   "scripts": {
-    "start": "nodemon addisserv.js"
+    "start": "node addisserv.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.12.4",
     "mongodb": "^4.6.0",

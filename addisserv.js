@@ -1,4 +1,5 @@
 require('dotenv').config();
+var cors = require('cors');
 const express = require("express");
 const app = express();
 let mongoose;
@@ -12,23 +13,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const router = express.Router();
 
-const enableCORS = function (req, res, next) {
-  if (!process.env.DISABLE_XORIGIN) {
-    const allowedOrigins = ["*"];
-    const origin = req.headers.origin;
-    if (!process.env.XORIGIN_RESTRICT || allowedOrigins.indexOf(origin) > -1) {
-      console.log(req.method);
-      res.set({
-        "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
-      });
-    }
-  }
-  next();
-};
-
+app.use(cors())
 // global setting for safety timeouts to handle possible
 // wrong callbacks that will never be called
 const TIMEOUT = 10000;
@@ -36,11 +21,13 @@ const TIMEOUT = 10000;
 app.use(bodyParser.urlencoded({ extended: "false" }));
 app.use(bodyParser.json());
 
+
+
+
 // ##################################
-app.get("/",function ( req ,res ){
-  
-    res.json({"Message":"This is Index Route"});
-  }); 
+app.get('/', function (req, res) {
+  res.json({"Message": "There is Nothing here"});
+});
 // #################################################################################
 const createEmployee = require("./models/employee").createAndSaveEmployee
 app.post("/employee",function(req,res){
@@ -125,7 +112,7 @@ app.use(function (err, req, res, next) {
     }
   });
   
-  const listener = app.listen(process.env.PORT || 4000, function () {
+  const listener = app.listen(process.env.PORT || 3000, function () {
     console.log("Your app is listening on port " + listener.address().port);
   });
   
